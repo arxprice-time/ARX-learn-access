@@ -9,21 +9,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --page:#050505;--card:#0a0a0e;
   --a:#a855f7;--a2:#7c3aed;--a3:#c084fc;--a4:#6d28d9;
   --text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.50);--dim:rgba(255,255,255,.28);
-  --line:rgba(168,85,247,.15);--ticker-h:46px;--nav-h:66px;
+  --line:rgba(168,85,247,.15);
 }
 html{scroll-behavior:smooth}
 body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
   min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 .bg-ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 70% 55% at 5% 0%,rgba(168,85,247,.12) 0%,transparent 65%),
+  background:radial-gradient(ellipse 70% 55% at 5% 0%,rgba(168,85,247,.12) 0%,transparent 65%),
     radial-gradient(ellipse 50% 40% at 95% 15%,rgba(124,58,237,.09) 0%,transparent 60%),
     radial-gradient(ellipse 60% 50% at 50% 100%,rgba(109,40,217,.07) 0%,transparent 60%)}
 .bg-grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.38;
@@ -33,69 +31,15 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
   background-image:linear-gradient(rgba(168,85,247,1) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,1) 1px,transparent 1px);
   background-size:80px 80px}
 
-/* ══ TICKER ══ */
-#arx-ticker{position:sticky;top:0;z-index:9999;width:100%;overflow:hidden;
-  background:rgba(5,5,5,.92);backdrop-filter:blur(22px);
-  border-bottom:1px solid var(--line);box-shadow:0 0 50px rgba(168,85,247,.12)}
-.ticker-inner{height:var(--ticker-h);display:flex;align-items:center;gap:10px;padding:0 16px}
-.ticker-badge{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;
-  height:28px;padding:0 12px;border-radius:999px;
-  background:rgba(168,85,247,.11);border:1px solid rgba(168,85,247,.28);
-  font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--a3)}
-.ticker-badge .dot{width:6px;height:6px;border-radius:50%;
-  background:var(--a);box-shadow:0 0 7px var(--a);animation:blink 1.8s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.22}}
-.ticker-marquee{flex:1;overflow:hidden}
-.ticker-track{display:inline-flex;align-items:center;animation:ticker-scroll 34s linear infinite}
-#arx-ticker:hover .ticker-track{animation-play-state:paused}
-@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ticker-item{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 13px;
-  margin-right:8px;border-radius:999px;border:1px solid rgba(168,85,247,.17);
-  background:rgba(0,0,0,.18);color:var(--text);font-size:12px;text-decoration:none;
-  transition:.15s ease;white-space:nowrap}
-.ticker-item:hover{border-color:rgba(168,85,247,.38);background:rgba(168,85,247,.08)}
-.ticker-item .tf{font-weight:600}
-.ticker-item .td{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--a3);
-  background:rgba(168,85,247,.11);border:1px solid rgba(168,85,247,.22);padding:2px 8px;border-radius:999px}
-
-/* ══ NAV ══ */
-#arx-nav{position:sticky;top:var(--ticker-h);z-index:5000;width:100%;
-  background:rgba(5,5,5,.93);backdrop-filter:blur(22px);
-  border-bottom:1px solid rgba(255,255,255,.05);box-shadow:0 4px 30px rgba(0,0,0,.45)}
-.nav-inner{max-width:1380px;margin:0 auto;padding:0 40px;height:var(--nav-h);
-  display:flex;align-items:center;justify-content:space-between;overflow:visible}
-.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);flex:0 0 auto}
-.nav-brand img{height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 0 10px rgba(168,85,247,.35))}
-.nav-brand-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14.5px}
-.nav-brand-sub{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:1px;letter-spacing:.05em}
-.nav-links{display:flex;align-items:center;gap:0;flex:1;justify-content:center;overflow:visible}
-.nav-dd{position:relative;flex:0 0 auto}
-.nav-dd-btn{display:inline-flex;align-items:center;gap:5px;height:36px;padding:0 13px;
-  border-radius:8px;background:transparent;border:1px solid transparent;
-  color:rgba(255,255,255,.68);font-family:'Outfit',sans-serif;font-size:13px;
-  font-weight:500;cursor:pointer;transition:.15s ease;white-space:nowrap}
-.nav-dd-btn:hover,.nav-dd.open .nav-dd-btn{color:#fff;background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.16)}
-.nav-dd-btn svg{width:11px;height:11px;fill:none;stroke:rgba(168,85,247,.8);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
-.nav-dd.open .nav-dd-btn svg{transform:rotate(180deg)}
-.nav-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);
-  min-width:210px;background:rgba(9,9,13,.97);border:1px solid rgba(168,85,247,.22);
-  border-radius:14px;box-shadow:0 20px 65px rgba(0,0,0,.70),0 0 40px rgba(168,85,247,.09);
-  padding:6px;display:none;z-index:9999}
-.nav-dd.open .nav-menu{display:block}
-.nav-menu-item{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:9px;
-  color:rgba(255,255,255,.82);text-decoration:none;font-size:13px;font-weight:500;transition:.13s ease;white-space:nowrap}
-.nav-menu-item:hover{background:rgba(168,85,247,.10);color:#fff}
-.nav-menu-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;
-  justify-content:center;background:rgba(168,85,247,.09);border:1px solid rgba(168,85,247,.18);font-size:13px;flex:0 0 auto}
-.nav-menu-sep{height:1px;background:rgba(255,255,255,.06);margin:5px 8px}
-.nav-menu-badge{margin-left:auto;padding:3px 8px;border-radius:999px;
-  background:linear-gradient(135deg,var(--a),var(--a2));font-size:9.5px;font-weight:700;color:#fff;letter-spacing:.05em;text-transform:uppercase}
-.nav-cta{flex:0 0 auto;height:36px;padding:0 18px;border-radius:999px;
-  background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-weight:700;font-size:13px;
-  text-decoration:none;display:flex;align-items:center;gap:6px;
-  box-shadow:0 8px 28px rgba(168,85,247,.26);transition:.15s ease}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 14px 40px rgba(168,85,247,.36);filter:brightness(1.05)}
+/* ══ BACK BAR ══ */
+.back-bar{position:sticky;top:0;z-index:9999;padding:14px 32px;
+  background:rgba(5,5,5,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(168,85,247,.12)}
+.back-bar a{display:inline-flex;align-items:center;gap:8px;
+  color:rgba(255,255,255,.55);text-decoration:none;
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;transition:color .2s}
+.back-bar a:hover{color:#fff}
 
 /* ══ HERO ══ */
 .la-hero{position:relative;z-index:1;padding:90px 40px 70px;text-align:center}
@@ -105,6 +49,7 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
   text-transform:uppercase;color:var(--a3);margin-bottom:24px}
 .la-chip .cdot{width:5px;height:5px;border-radius:50%;
   background:var(--a);box-shadow:0 0 6px var(--a);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.22}}
 .la-title{font-family:'Syne',sans-serif;font-size:clamp(40px,6.5vw,82px);
   font-weight:800;line-height:1.02;letter-spacing:-.04em;color:#fff;margin-bottom:20px;padding-bottom:4px}
 .la-title .hl{background:linear-gradient(135deg,var(--a3),var(--a),var(--a2));
@@ -116,7 +61,6 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
 .la-products{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:70px 40px 80px}
 .la-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 
-/* product card */
 .la-card{background:var(--card);border:1px solid rgba(168,85,247,.18);border-radius:22px;
   display:flex;flex-direction:column;position:relative;overflow:hidden;transition:.22s ease}
 .la-card::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;
@@ -124,37 +68,25 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
 .la-card:hover{border-color:rgba(168,85,247,.38);transform:translateY(-4px);
   box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(168,85,247,.12)}
 .la-card-top{padding:32px 28px 24px}
-.la-card-badge{display:inline-flex;align-items:center;gap:6px;
-  height:24px;padding:0 10px;border-radius:999px;margin-bottom:18px;
-  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;
-  text-transform:uppercase}
+.la-card-badge{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;
+  border-radius:999px;margin-bottom:18px;font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase}
 .la-card-badge.english{background:rgba(168,85,247,.10);border:1px solid rgba(168,85,247,.22);color:var(--a3)}
 .la-card-badge.portugues{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.22);color:#86efac}
 .la-card-badge.access{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.22);color:#fde68a}
-.la-card-price{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;
-  color:var(--a3);margin-bottom:8px;font-family:'DM Mono',monospace;letter-spacing:.05em}
+.la-card-price{font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:var(--a3);margin-bottom:8px;letter-spacing:.05em}
 .la-card-title{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;
   color:#fff;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px}
 .la-card-desc{font-size:13.5px;color:var(--muted);line-height:1.72;flex:1}
-
-/* includes */
 .la-card-includes{padding:0 28px 24px;display:flex;flex-direction:column;gap:8px}
 .la-include{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:rgba(255,255,255,.72)}
 .la-include-icon{color:var(--a3);flex:0 0 auto;margin-top:1px;font-size:13px}
-
-/* divider */
 .la-card-divider{height:1px;background:rgba(168,85,247,.10);margin:0 28px 24px}
-
-/* CTA */
 .la-card-cta{margin:0 28px 28px;display:flex;align-items:center;justify-content:center;gap:8px;
-  height:50px;border-radius:12px;
-  background:linear-gradient(135deg,var(--a),var(--a2));
+  height:50px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--a2));
   color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;
-  text-decoration:none;letter-spacing:-.01em;
-  box-shadow:0 10px 35px rgba(168,85,247,.28);transition:.18s ease}
+  text-decoration:none;box-shadow:0 10px 35px rgba(168,85,247,.28);transition:.18s ease}
 .la-card-cta:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 16px 50px rgba(168,85,247,.40)}
-
-/* featured card */
 .la-card.featured{border-color:rgba(168,85,247,.35);
   background:radial-gradient(ellipse 90% 55% at 50% 0%,rgba(168,85,247,.10) 0%,transparent 60%),var(--card)}
 
@@ -169,8 +101,7 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
   text-decoration:none;color:var(--text);transition:.18s ease;position:relative;overflow:hidden}
 .la-free-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
   background:linear-gradient(180deg,var(--a),var(--a2))}
-.la-free-card:hover{border-color:rgba(168,85,247,.30);transform:translateX(4px);
-  background:rgba(168,85,247,.05)}
+.la-free-card:hover{border-color:rgba(168,85,247,.30);transform:translateX(4px);background:rgba(168,85,247,.05)}
 .la-free-icon{width:40px;height:40px;border-radius:10px;flex:0 0 auto;
   display:flex;align-items:center;justify-content:center;font-size:18px;
   background:rgba(168,85,247,.09);border:1px solid rgba(168,85,247,.18)}
@@ -182,9 +113,8 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
   text-transform:uppercase;color:#86efac;white-space:nowrap;flex:0 0 auto}
 
 /* ══ FOOTER ══ */
-.la-footer{position:relative;z-index:1;
-  border-top:1px solid rgba(255,255,255,.05);padding:36px 40px;
-  display:flex;align-items:center;justify-content:space-between;
+.la-footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.05);
+  padding:36px 40px;display:flex;align-items:center;justify-content:space-between;
   flex-wrap:wrap;gap:16px;max-width:1380px;margin:0 auto}
 .la-footer-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .la-footer-logo img{height:28px;width:auto;filter:drop-shadow(0 0 8px rgba(168,85,247,.25))}
@@ -207,22 +137,9 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
   .la-hero{padding:60px 20px 50px}
   .la-products,.la-free{padding-left:20px;padding-right:20px}
   .la-footer{padding:28px 20px}
-  .nav-inner{height:auto;flex-wrap:wrap;padding:8px 12px;gap:8px}
-  .nav-brand{flex:1 1 auto}
-  .nav-cta{display:none}
-  .nav-links{display:flex!important;flex:0 0 100%;overflow-x:auto!important;
-    overflow-y:visible!important;-webkit-overflow-scrolling:touch;
-    scrollbar-width:none;gap:0;justify-content:flex-start;padding-bottom:4px}
-  .nav-links::-webkit-scrollbar{display:none}
-  .nav-dd-btn{font-size:12px;padding:0 10px;height:32px;white-space:nowrap}
-  .nav-link-btn{font-size:12px;padding:0 10px;height:32px}
-  .nav-menu{position:fixed!important;left:10px!important;right:10px!important;
-    top:112px!important;transform:none!important;width:auto!important;
-    max-height:60vh!important;overflow-y:auto!important;z-index:2147483647!important}
-  #arx-nav{overflow:visible!important;z-index:2147483647!important}
-  #arx-nav .nav-inner,#arx-nav .nav-dd{overflow:visible!important}
+  .back-bar{padding:12px 20px}
 }
-@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}.fu{opacity:1;animation:none}.dot,.cdot{animation:none}}
+@media(prefers-reduced-motion:reduce){.fu{opacity:1;animation:none}.cdot{animation:none}}
 </style>
 </head>
 <body>
@@ -230,99 +147,10 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
 <div class="bg-grain"></div>
 <div class="bg-grid"></div>
 
-<!-- ══ TICKER ══ -->
-<div id="arx-ticker">
-  <div class="ticker-inner">
-    <div class="ticker-badge"><span class="dot"></span>LIVE DEALS</div>
-    <div class="ticker-marquee"><div class="ticker-track" id="js-ticker"></div></div>
-  </div>
+<!-- ══ BACK BAR ══ -->
+<div class="back-bar">
+  <a href="https://www.arxpricetime.com">← Back to ARX</a>
 </div>
-
-<!-- === NAV === -->
-<nav id="arx-nav">
-  <div class="nav-inner">
-    <a href="https://www.arxpricetime.com" class="nav-brand">
-      <img src="https://i.postimg.cc/fRkFBhcs/ARX-web-logo.png" alt="ARX">
-      <div>
-        <div class="nav-brand-name">ARX | Price &amp; Time</div>
-        <div class="nav-brand-sub">Alpha Range eXecution</div>
-      </div>
-    </a>
-
-    <div class="nav-links">
-
-      <!-- Prop Firms - dropdown -->
-      <div class="nav-dd">
-        <button class="nav-dd-btn" type="button">
-          Prop Firms
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
-
-        <div class="nav-menu">
-          <a class="nav-menu-item" href="https://www.arxpricetime.com#arx-prop-firms">
-            <span class="nav-menu-icon">🏦</span>Forex Firms
-          </a>
-          <a class="nav-menu-item" href="https://www.arxpricetime.com#arx-futures">
-            <span class="nav-menu-icon">📈</span>Futures Firms
-          </a>
-          <a class="nav-menu-item" href="https://www.arxpricetime.com#arx-deals">
-            <span class="nav-menu-icon">🔥</span>Today's Deals
-          </a>
-        </div>
-      </div>
-
-      <!-- Learn & Access - 1 clique -->
-      <a class="nav-link-btn" 
-         href="https://arxprice-time.github.io/ARX-learn-access/" 
-         target="_blank" 
-         rel="noopener">
-         🎓 Learn &amp; Access
-      </a>
-
-      <!-- Follow Us - 1 clique -->
-      <a class="nav-link-btn" 
-         href="https://arxprice-time.github.io/ARX-follow-us/" 
-         target="_blank" 
-         rel="noopener">
-         📲 Follow Us
-      </a>
-
-      <!-- Giveaway - 1 clique, destaque roxo -->
-      <a class="nav-link-btn gw" 
-         href="https://arxprice-time.github.io/ARX-giveaway-page/" 
-         target="_blank" 
-         rel="noopener">
-         🎁 Giveaway
-      </a>
-
-      <!-- Login - dropdown -->
-      <div class="nav-dd">
-        <button class="nav-dd-btn" type="button">
-          Login
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
-
-        <div class="nav-menu">
-          <a class="nav-menu-item" href="https://www.arxpricetime.com/login">
-            <span class="nav-menu-icon">🔑</span>Member Login
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <a class="nav-cta" 
-       href="https://www.arxpricetime.com/arx-sniper-strategy/buy" 
-       target="_blank">
-       Join ARX →
-    </a>
-
-  </div>
-</nav>
 
 <!-- ══ HERO ══ -->
 <section class="la-hero">
@@ -335,7 +163,6 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
 <div class="la-products">
   <div class="la-grid">
 
-    <!-- Card 1: ARX Sniper Strategy -->
     <div class="la-card fu d1">
       <div class="la-card-top">
         <div class="la-card-badge access">⭐ Course + Discord Access</div>
@@ -351,12 +178,9 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
         <div class="la-include"><span class="la-include-icon">✓</span>Risk management & precision sizing</div>
         <div class="la-include"><span class="la-include-icon">✓</span>Discord community access</div>
       </div>
-      <a class="la-card-cta" href="https://www.arxpricetime.com/arx-sniper-strategy/buy" target="_blank" rel="noopener">
-        Get Access  £99 →
-      </a>
+      <a class="la-card-cta" href="https://www.arxpricetime.com/arx-sniper-strategy/buy" target="_blank" rel="noopener">Get Access £99 →</a>
     </div>
 
-    <!-- Card 2: ARX Method Full Course — FEATURED -->
     <div class="la-card featured fu d2">
       <div class="la-card-top">
         <div class="la-card-badge english">🎓 Complete Course</div>
@@ -372,12 +196,9 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
         <div class="la-include"><span class="la-include-icon">✓</span>Risk rules & consistency protocols</div>
         <div class="la-include"><span class="la-include-icon">✓</span>Lifetime access & future updates</div>
       </div>
-      <a class="la-card-cta" href="https://www.arxpricetime.com/arx-method-full-course/buy" target="_blank" rel="noopener">
-        Get Access £199 →
-      </a>
+      <a class="la-card-cta" href="https://www.arxpricetime.com/arx-method-full-course/buy" target="_blank" rel="noopener">Get Access £199 →</a>
     </div>
 
-    <!-- Card 3: Portuguese -->
     <div class="la-card fu d3">
       <div class="la-card-top">
         <div class="la-card-badge portugues">🇧🇷 Português Brasil</div>
@@ -393,9 +214,7 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
         <div class="la-include"><span class="la-include-icon">✓</span>Regras de execução e gestão de risco</div>
         <div class="la-include"><span class="la-include-icon">✓</span>Disciplina e mindset do trader consistente</div>
       </div>
-      <a class="la-card-cta" href="https://www.arxpricetime.com/arx-concepts-execution-framework-portugues-brasil/buy" target="_blank" rel="noopener">
-        Obter Acesso £199 →
-      </a>
+      <a class="la-card-cta" href="https://www.arxpricetime.com/arx-concepts-execution-framework-portugues-brasil/buy" target="_blank" rel="noopener">Obter Acesso £199 →</a>
     </div>
 
   </div>
@@ -407,34 +226,22 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
   <div class="la-free-grid">
     <a class="la-free-card fu d2" href="https://www.arxpricetime.com/the-7-phases-of-a-profitable-trader" target="_blank" rel="noopener">
       <div class="la-free-icon">📄</div>
-      <div>
-        <div class="la-free-name">The 7 Phases of a Profitable Trader</div>
-        <div class="la-free-sub">The trader development roadmap where are you right now?</div>
-      </div>
+      <div><div class="la-free-name">The 7 Phases of a Profitable Trader</div><div class="la-free-sub">The trader development roadmap where are you right now?</div></div>
       <div class="la-free-tag">Free</div>
     </a>
     <a class="la-free-card fu d3" href="https://www.arxpricetime.com/arx-break-even-protocol-pdf-guide" target="_blank" rel="noopener">
       <div class="la-free-icon">📄</div>
-      <div>
-        <div class="la-free-name">ARX Break-Even Protocol</div>
-        <div class="la-free-sub">The exact rules for moving to break-even protect profits without exiting too early.</div>
-      </div>
+      <div><div class="la-free-name">ARX Break-Even Protocol</div><div class="la-free-sub">The exact rules for moving to break-even protect profits without exiting too early.</div></div>
       <div class="la-free-tag">Free</div>
     </a>
     <a class="la-free-card fu d4" href="https://discord.gg/FCZxHb4qKA" target="_blank" rel="noopener">
       <div class="la-free-icon">💬</div>
-      <div>
-        <div class="la-free-name">Join the ARX Discord</div>
-        <div class="la-free-sub">Free community access daily analysis, trade ideas and ARX traders.</div>
-      </div>
+      <div><div class="la-free-name">Join the ARX Discord</div><div class="la-free-sub">Free community access daily analysis, trade ideas and ARX traders.</div></div>
       <div class="la-free-tag">Free</div>
     </a>
     <a class="la-free-card fu d5" href="https://www.arxpricetime.com/the-arx-reversal-code" target="_blank" rel="noopener">
       <div class="la-free-icon">🔒</div>
-      <div>
-        <div class="la-free-name">The ARX Reversal Code</div>
-        <div class="la-free-sub">Identify high-probability reversal zones using the ARX framework.</div>
-      </div>
+      <div><div class="la-free-name">The ARX Reversal Code</div><div class="la-free-sub">Identify high-probability reversal zones using the ARX framework.</div></div>
       <div class="la-free-tag">Premium</div>
     </a>
   </div>
@@ -458,38 +265,12 @@ body{background:var(--page);color:var(--text);font-family:'Outfit',sans-serif;
 
 <script>
 (function(){
-  const track=document.getElementById('js-ticker');
-  if(track){
-    const items=[
-      {firm:'APEX Trader Funding',disc:'90% OFF',url:'https://apextraderfunding.com/'},
-      {firm:'Take Profit Trader',disc:'40% OFF',url:'https://takeprofittrader.com/'},
-      {firm:'Lucid Trading',disc:'40% OFF',url:'https://lucidtrading.com/'},
-      {firm:'FTMO',disc:'19% OFF',url:'https://trader.ftmo.com/?affiliates=rHueIgOUyaggDZhPGJBS'},
-      {firm:'FXIFY',disc:'28% + 10% OFF',url:'https://trader.fxify.com/purchasechallenge?affiliateId=5621'},
-      {firm:'The5ers',disc:'5% OFF',url:'https://www.the5ers.com/?afmc=sca'},
-    ];
-    const h=items.map(d=>`<a class="ticker-item" href="${d.url}" target="_blank" rel="noopener"><span class="tf">${d.firm}</span><span class="td">${d.disc}</span></a>`).join('');
-    track.innerHTML=h+h+h;
-  }
   const yr=document.getElementById('js-year');
   if(yr)yr.textContent=new Date().getFullYear();
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});
   },{threshold:0.08});
   document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
-  function toggleDD(dd){
-    const open=dd.classList.contains('open');
-    document.querySelectorAll('.nav-dd.open').forEach(o=>o.classList.remove('open'));
-    if(!open)dd.classList.add('open');
-  }
-  document.querySelectorAll('.nav-dd').forEach(dd=>{
-    const btn=dd.querySelector('.nav-dd-btn');
-    btn.addEventListener('click',e=>{e.stopPropagation();toggleDD(dd)});
-    btn.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();toggleDD(dd)},{passive:false});
-  });
-  document.addEventListener('click',()=>document.querySelectorAll('.nav-dd.open').forEach(o=>o.classList.remove('open')));
-  document.addEventListener('touchend',e=>{if(!e.target.closest('.nav-dd'))document.querySelectorAll('.nav-dd.open').forEach(o=>o.classList.remove('open'))},{passive:true});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.nav-dd.open').forEach(o=>o.classList.remove('open'))});
 })();
 </script>
 </body>
